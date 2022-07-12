@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Pokes</title>
+</head>
+<body class="container-fluid p-3 text-bg-primary bg-info bg-opacity-10">
+    <nav class="navbar navbar-expand-lg bg-warning">
+        <div class="container-fluid">
+            <h1 class="">Welcome, {{user.name}}</h1>
+            <a class="nav-link" href="/logout">Logout</a>
+        </div>
+    </nav>
+    <h4 class="p-3 text-bg-primary bg-info bg-opacity-75 border border-info border-start-0 rounded-end"> You've been poked {{user.poke_count}} times!</h4>
+    <div class="p-3 text-bg-primary bg-info bg-opacity-75 border border-info border-start-0 rounded-end">
+        {% for p in user.poker_list %}
+        <p class="row-6">{{p.alias}} poked you {{p.poke_count}} time(s) </p>
+        {%endfor%}
+    </div>
+    <table class="table table-hover justify-content-center text-center">
+        <caption class="caption-top">People you may want to poke:</caption>
+        <thead class="bg-info">
+            <th>Name</th>
+            <th >Alias</th>
+            <th>Email Address</th>
+            <th>Poke History</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for person in poke_list %}
+                {%if person.id != user.id%}
+            <tr>
+                <td class="table-warning">{{person.name}}</td>
+                <td class="table-success">{{person.alias}}</td>
+                <td class="table-info">{{person.email}}</td>
+                <td class="table-danger">{{person.poke_count}}</td>
+                <td class="table-primary"><a class="btn btn-primary" href="/poke_them/{{person.id}}">Poke</a></td>
+            </tr>
+            {%endif%} 
+        {%endfor%}
+        </tbody>
+    </table>
+
+</body>
+</html>
