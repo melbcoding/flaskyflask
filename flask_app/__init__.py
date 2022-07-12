@@ -5,5 +5,5 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-app.secret_key= os.getenv("SECRET_KEY")
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 port = os.getenv("PORT")
